@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import supabase from '../supabaseClient'
-import './Login.css'
+import styles from './GuestDashboard.module.css';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Login: React.FC = () => {
@@ -8,6 +10,12 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate('/'); // this goes to the homepage
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -21,7 +29,6 @@ const Login: React.FC = () => {
     .single()
 
   if (error) {
-    alert(error.message)
     setError('User not found.')
     setLoading(false)
     return
@@ -37,31 +44,35 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <label>Username</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+    <div className={styles.container}>
+      <div className={styles.dashboard}>
+        
+        <form onSubmit={handleLogin} className={styles.form}>
+          <h2>Admin Login</h2>
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
 
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-
-        {error && <p className="error-message">{error}</p>}
-      </form>
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <div>
+          <button onClick={handleBackClick}>Back</button>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
+          </div>
+          <div className={styles.errorMessage}>{error && <p className={styles.errormessage}>{error}</p>}</div>
+        </form>
+      </div>
     </div>
   )
 }
