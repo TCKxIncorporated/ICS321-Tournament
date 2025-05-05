@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import supabase from '../supabaseClient'
-import styles from './GuestDashboard.module.css';
+import styles from '../CSS/GuestDashboard.module.css';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
     setLoading(false)
     return
   }
-  alert('Login successful!')
+  navigate('/admin')
   setLoading(false)
   }
 

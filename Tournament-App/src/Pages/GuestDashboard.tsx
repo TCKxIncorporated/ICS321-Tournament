@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './GuestDashboard.module.css';
+import styles from '../CSS/GuestDashboard.module.css';
 import { useNavigate } from 'react-router-dom';
 
 
