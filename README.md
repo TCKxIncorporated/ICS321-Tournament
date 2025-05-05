@@ -2,6 +2,7 @@ Tech Stack
 - Supabase
 - React + TypeScript
 - Vite
+- (Preferably css modules)
 - React Router
 
 ### 1. Clone the Repository
