@@ -1,70 +1,58 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addTournament } from '../../backend/adminMethod'; 
+import { selectCaptainForTeam } from '../../backend/adminMethod'; // adjust if needed
 
-interface FormData {
-  name: string;
-  startDate: string;
-  endDate: string;
-}
-
-function AddTournament() {
+function SelectCaptain() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    startDate: '',
-    endDate: ''
-  });
+  const [matchNo, setMatchNo] = useState('');
+  const [teamId, setTeamId] = useState('');
+  const [playerCaptain, setPlayerCaptain] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await addTournament(formData.name, formData.startDate, formData.endDate);
-      alert('Tournament added successfully!');
-      setFormData({ name: '', startDate: '', endDate: '' });
+      await selectCaptainForTeam(Number(matchNo), Number(teamId), Number(playerCaptain));
+      alert('Captain selected successfully!');
+      setMatchNo('');
+      setTeamId('');
+      setPlayerCaptain('');
     } catch (error) {
-      console.error('Failed to add tournament:', error);
-      alert('Error adding tournament. Try again.');
+      console.error('Error selecting captain:', error);
+      alert('Failed to select captain. Please try again.');
     }
   };
 
   return (
     <div style={styles.container}>
-      <h2>Add Tournament</h2>
+      <h2>Select Team Captain</h2>
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
-          type="text"
-          name="name"
-          placeholder="Enter Tournament Name"
-          value={formData.name}
-          onChange={handleChange}
+          type="number"
+          placeholder="Match Number"
+          value={matchNo}
+          onChange={(e) => setMatchNo(e.target.value)}
           required
           style={styles.input}
         />
         <input
-          type="date"
-          name="startDate"
-          value={formData.startDate}
-          onChange={handleChange}
+          type="number"
+          placeholder="Team ID"
+          value={teamId}
+          onChange={(e) => setTeamId(e.target.value)}
           required
           style={styles.input}
         />
         <input
-          type="date"
-          name="endDate"
-          value={formData.endDate}
-          onChange={handleChange}
+          type="number"
+          placeholder="Player ID (Captain)"
+          value={playerCaptain}
+          onChange={(e) => setPlayerCaptain(e.target.value)}
           required
           style={styles.input}
         />
         <div style={styles.buttonGroup}>
-          <button type="submit" style={styles.button}>Add Tournament</button>
+          <button type="submit" style={styles.button}>Select Captain</button>
           <button type="button" onClick={() => navigate('/admin')} style={styles.backButton}>Back</button>
         </div>
       </form>
@@ -110,4 +98,4 @@ const styles: { [key: string]: React.CSSProperties } = {
   }
 };
 
-export default AddTournament;
+export default SelectCaptain;

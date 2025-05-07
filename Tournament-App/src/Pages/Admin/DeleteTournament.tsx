@@ -1,72 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { deleteTournament } from '../../backend/adminMethod'; // your existing RPC
+import supabase from '../../supabaseClient'; // direct Supabase query
 
-interface FormData {
-  tournamentId: string;
-  name: string;
-  startDate: string;
-  endDate: string;
+interface Tournament {
+  tr_id: number;
+  tr_name: string;
 }
 
 const DeleteTournament: React.FC = () => {
-  const navigate: ReturnType<typeof useNavigate> = useNavigate();
-  const [formData, setFormData] = useState<FormData>({
-    tournamentId: '',
-    name: '',
-    startDate: '',
-    endDate: ''
-  });
+  const navigate = useNavigate();
+  const [tournaments, setTournaments] = useState<Tournament[]>([]);
+  const [selectedTrId, setSelectedTrId] = useState<string>('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
-    setFormData(f => ({ ...f, [name]: value }));
-  };
+  useEffect(() => {
+    const fetchTournaments = async () => {
+      const { data, error } = await supabase
+        .from('tournament')
+        .select('tr_id, tr_name');
 
-  const handleDelete = (e: React.FormEvent<HTMLFormElement>): void => {
+      if (error) {
+        console.error('Failed to fetch tournaments:', error.message);
+      } else {
+        setTournaments(data);
+      }
+    };
+
+    fetchTournaments();
+  }, []);
+
+  const handleDelete = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Deleting tournament:', formData);
-    alert(`Tournament ${formData.tournamentId} deleted!`);
-    setFormData({ tournamentId: '', name: '', startDate: '', endDate: '' });
+    try {
+      await deleteTournament(parseInt(selectedTrId));
+      alert(`Tournament ${selectedTrId} deleted!`);
+      setSelectedTrId('');
+      setTournaments(prev => prev.filter(t => t.tr_id !== parseInt(selectedTrId)));
+    } catch (err) {
+      console.error('Error deleting tournament:', err);
+      alert('Failed to delete tournament.');
+    }
   };
 
   return (
     <div style={styles.container}>
       <h2>Delete Tournament</h2>
       <form onSubmit={handleDelete} style={styles.form}>
-        <input
-          name="tournamentId"
-          type="text"
-          placeholder="Enter Tournament ID"
-          value={formData.tournamentId}
-          onChange={handleChange}
+        <select
+          value={selectedTrId}
+          onChange={(e) => setSelectedTrId(e.target.value)}
           required
           style={styles.input}
-        />
-        <input
-          name="name"
-          type="text"
-          placeholder="Enter Tournament Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-        <input
-          name="startDate"
-          type="date"
-          value={formData.startDate}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-        <input
-          name="endDate"
-          type="date"
-          value={formData.endDate}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
+        >
+          <option value="">Select Tournament</option>
+          {tournaments.map(t => (
+            <option key={t.tr_id} value={t.tr_id}>
+              {t.tr_id} - {t.tr_name}
+            </option>
+          ))}
+        </select>
         <div style={styles.buttonGroup}>
           <button type="submit" style={styles.deleteButton}>Delete Tournament</button>
           <button type="button" onClick={() => navigate('/admin')} style={styles.backButton}>Back</button>
@@ -102,16 +94,16 @@ const styles: Record<string, React.CSSProperties> = {
     backgroundColor: '#e74c3c',
     color: 'white',
     border: 'none',
-    cursor:'pointer'
-   },
-   backButton:{
-     padding:'10px', 
-     fontSize:'16px', 
-     backgroundColor:'#ccc', 
-     color:'black', 
-     border:'none', 
-     cursor:'pointer'
-   }
+    cursor: 'pointer'
+  },
+  backButton: {
+    padding: '10px 20px',
+    fontSize: '16px',
+    backgroundColor: '#ccc',
+    color: 'black',
+    border: 'none',
+    cursor: 'pointer'
+  }
 };
 
 export default DeleteTournament;

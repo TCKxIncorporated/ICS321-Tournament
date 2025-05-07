@@ -6,6 +6,10 @@ import AddTournament from './Pages/Admin/AddTournament.tsx'
 import AddTeam from './Pages/Admin/AddTeam.tsx'
 import ApprovePlayer from './Pages/Admin/ApprovePlayer.tsx'
 import DeleteTournament from './Pages/Admin/DeleteTournament.tsx'
+import SelectCaptain from './Pages/Admin/SelectCaptain.tsx';
+
+
+
 
 function App() {
   return (
@@ -18,6 +22,7 @@ function App() {
         <Route path="/admin/add-team" element={<AddTeam />} />
         <Route path="/admin/approve-player" element={<ApprovePlayer />} />
         <Route path="/admin/delete-tournament" element={<DeleteTournament />} />
+        <Route path="/admin/select-captain" element={<SelectCaptain />} />
       </Routes>
     </BrowserRouter>
   )
