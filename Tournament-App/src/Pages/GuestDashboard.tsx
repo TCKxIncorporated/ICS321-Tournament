@@ -19,13 +19,18 @@ const GuestDashboard: React.FC = () => {
         <button className={styles.button} onClick={() => navigate("/teams")}>
           Browse Teams
         </button>
-        <button className={styles.button}>
+        <button
+          className={styles.button}
+          onClick={() => navigate("/highestscorer")}
+        >
           Browse The player with highest goals scored
         </button>
-        <button className={styles.button}>
+        <button className={styles.button} onClick={() => navigate("/redcards")}>
           Browse Players who received red cards
         </button>
-        <button className={styles.button}>Apply to Join a team</button>
+        <button className={styles.button} onClick={() => navigate("/join")}>
+          Apply to Join a team
+        </button>
         <button className={styles.button} onClick={handleAdminLogin}>
           Login as admin
         </button>
