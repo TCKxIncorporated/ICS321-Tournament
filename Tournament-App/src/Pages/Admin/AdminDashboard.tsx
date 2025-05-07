@@ -18,6 +18,10 @@ function AdminDashboard() {
         <button onClick={() => navigate('/admin/add-team')} style={styles.button}>
           Add Team to Tournament
         </button>
+        <button onClick={() => navigate('/admin/select-captain')} style={styles.button}>
+          Select Team Captain
+        </button>
+
         <button onClick={() => navigate('/admin/approve-player')} style={styles.button}>
           Approve Player
         </button>
