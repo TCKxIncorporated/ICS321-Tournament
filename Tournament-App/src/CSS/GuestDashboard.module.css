@@ -1,86 +1,152 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color:white;
-  }
-  
-  .dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    border-style:solid;
-    border-radius: 16px;
-    padding: 10px 15px;
-    margin:auto;
-    background-color: #a3a3a3;
-  }
-  
-  .button {
-    background-color: #000000;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 300px;
-    text-align: center;
-  }
-  
-  .button:hover {
-    background-color: #2b2b2b;
-  }
-  
-  .backButton {
-    margin-top: 16px;
-    background-color: #3c3c3c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  .backButton:hover {
-    background-color: #2b2b2b;
-  }  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
 
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border-style: solid;
+  border-radius: 16px;
+  padding: 10px 15px;
+  margin: auto;
+  background-color: #a3a3a3;
+}
 
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 15px;
-  }
+.button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 300px;
+  text-align: center;
+}
 
-  .form button{
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-    border: none;
-    padding: 6px 12px;
-    margin: 20px 5px;
-    
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100px;
-    text-align: center;
-    
-  }
+.button:hover {
+  background-color: #2b2b2b;
+}
 
-  .form button:hover {
-    background-color: #2b2b2b;
-  }
-  
-  .form input{
-    width: 25vh;
-    height: 2vh;
-  }
+.backButton {
+  margin-top: 16px;
+  background-color: #3c3c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-  .errorMessage{
-    color:red;
-  }
+.backButton:hover {
+  background-color: #2b2b2b;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.form button {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 6px 12px;
+  margin: 20px 5px;
+
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+}
+
+.form button:hover {
+  background-color: #2b2b2b;
+}
+
+.form input {
+  width: 25vh;
+  height: 2vh;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
+.listDashboard {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  align-items: center;
+  gap: 2px;
+  border-style: solid;
+  border-radius: 16px;
+  padding: 10px 15px;
+  margin: auto;
+  background-color: #a3a3a3;
+}
+.card {
+  border: 1px solid rgb(19, 19, 19);
+  background-color: rgb(235, 235, 235);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  width: 300px;
+}
+
+.box {
+  display: block;
+}
+
+.scrollContainer {
+  max-height: 400px;
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: content-box;
+  position: relative;
+  left: 60px;
+  bottom: 50px;
+}
+.backbtn {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  bottom: -380px;
+  left: -200px;
+  background-color: #444;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.backbtn:hover {
+  background-color: #2b2b2b;
+}
