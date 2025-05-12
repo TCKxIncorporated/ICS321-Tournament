@@ -12,23 +12,26 @@ function AdminDashboard() {
       <h1 style={styles.title}>Admin Dashboard</h1>
 
       <div style={styles.buttonContainer}>
-        <button onClick={() => navigate('/admin/add-tournament')} style={styles.button}>
-          Add New Tournament
-        </button>
-        <button onClick={() => navigate('/admin/add-team')} style={styles.button}>
-          Add Team to Tournament
-        </button>
-        <button onClick={() => navigate('/admin/select-captain')} style={styles.button}>
-          Select Team Captain
-        </button>
+  <button onClick={() => navigate('/admin/add-tournament')} style={styles.button}>
+    Add New Tournament
+  </button>
+  <button onClick={() => navigate('/admin/add-team')} style={styles.button}>
+    Add Team to Tournament
+  </button>
+  <button onClick={() => navigate('/admin/select-captain')} style={styles.button}>
+    Select Team Captain
+  </button>
+  <button onClick={() => navigate('/admin/approve-player')} style={styles.button}>
+    Approve Player
+  </button>
+  <button onClick={() => navigate('/admin/delete-tournament')} style={styles.button}>
+    Delete Tournament
+  </button>
+  <button onClick={() => navigate('/admin/send-match-details')} style={styles.button}>
+    Send Details of the Next Match
+  </button>
+</div>
 
-        <button onClick={() => navigate('/admin/approve-player')} style={styles.button}>
-          Approve Player
-        </button>
-        <button onClick={() => navigate('/admin/delete-tournament')} style={styles.button}>
-          Delete Tournament
-        </button>
-      </div>
 
       <button onClick={handleLogout} style={styles.logoutButton}>
         Logout

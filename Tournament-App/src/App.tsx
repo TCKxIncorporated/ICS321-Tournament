@@ -14,6 +14,7 @@ import TeamRosterPage from "./Pages/TeamRoster.tsx";
 import RedCardsPage from "./Pages/RedCardsPage.tsx";
 import HighestScorer from "./Pages/HighestScorer.tsx";
 import JoinRequestPage from "./Pages/JoinRequestPage.tsx";
+import SendMatchDetailsPage from './Pages/Admin/SendMatchDetailsPage.tsx';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/admin/approve-player" element={<ApprovePlayer />} />
         <Route path="/admin/delete-tournament" element={<DeleteTournament />} />
         <Route path="/admin/select-captain" element={<SelectCaptain />} />
+        <Route path="/admin/send-match-details" element={<SendMatchDetailsPage />} /> 
         <Route path="/tournamentspage" element={<TournamentsPage />} />
         <Route path="/matches/:tournamentId" element={<MatchesPage />} />
         <Route path="/teams" element={<TeamsPage />} />

@@ -5,11 +5,10 @@ import styles from "../CSS/GuestDashboard.module.css";
 
 interface Player {
   player_id: number;
-  player_name: string;
-  team_id: number;
+  name: string;
   team_name: string;
-  tr_id: number;
-  request_time: string;
+  booking_time: string;
+  match_no: number;
 }
 
 const RedCardsPage = () => {
@@ -44,11 +43,12 @@ const RedCardsPage = () => {
             {players.map((player) => (
               <div key={player.player_id} className={styles.card}>
                 <p>
-                  ID:{player.player_id} Name:{player.player_name}
+                  ID:{player.player_id} Name:{player.name}
                   <br />
                   Team Name:{player.team_name}
                   <br />
-                  Tournament ID:{player.tr_id} Date:{player.request_time}
+                  Match Number:{player.match_no} Time Received:
+                  {player.booking_time}m
                 </p>
               </div>
             ))}

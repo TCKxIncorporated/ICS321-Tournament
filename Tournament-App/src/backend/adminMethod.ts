@@ -86,3 +86,19 @@ export async function removeRequest(playerId: number, trId: number): Promise<voi
   });
   if (error) throw error;
 }
+export async function getUpcomingMatches(): Promise<any[]> {
+  const { data, error } = await supabase.rpc('get_upcoming_matches');
+  if (error) {
+    console.error("Failed to fetch upcoming matches:", error);
+    return [];
+  }
+  return data || [];
+}
+
+export async function getEmailsForMatch(matchNo: number): Promise<string[]> {
+  const { data, error } = await supabase.rpc('get_emails_for_match', {
+    match_no: matchNo
+  });
+  if (error) throw error;
+  return data.map((row: { email: string }) => row.email);
+}
